@@ -33,15 +33,14 @@ jobs:
 
       - name: Run tests and get coverage
         run: |
-          pytest -v --cov=src
+          pytest --cov=src --cov-report=xml
           coverage html
 
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v2
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     directory: ./htmlcov
-      #     fail_ci_if_error: true
-      #     flags: unittests
-      #     name: Coverage report
-      #     verbose: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
+          name: Backend Coverage report
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
+          verbose: true
