@@ -1,5 +1,6 @@
-from app import create_app
 from json import dumps, loads
+
+from app import create_app
 
 
 class Setup:
@@ -25,3 +26,9 @@ class Setup:
                                  content_type='multipart/form-data')
         task = loads(response.data)['task']
         return task
+
+    def insert_response(self, task_id, qn_id, body):
+        response = self.app.post(
+            f"/task/{task_id}/annotation/{qn_id}/?auth_token={self.auth_token}",
+            data=dumps(body), content_type='application/json')
+        return loads(response.data)
