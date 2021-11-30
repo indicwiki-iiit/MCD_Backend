@@ -1,6 +1,7 @@
 from json import dumps, loads
 
 from app import create_app
+from src.models import USER_TYPES
 
 
 class Setup:
@@ -10,8 +11,8 @@ class Setup:
 
     def generate_user(self, fake_user, **kwargs):
         user = fake_user()
-        if kwargs.get('user_type', 'admin') == 'admin':
-            user['user_type'] = 'admin'
+        if (u_type := kwargs.get('user_type', 'admin')) in USER_TYPES:
+            user['user_type'] = u_type
         response = self.app.post('/user/', data=dumps(user), content_type='application/json')
         self.user = loads(response.data)['response']
         body = {'email': self.user['email']}

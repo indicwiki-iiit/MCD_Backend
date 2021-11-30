@@ -1,12 +1,12 @@
 import random
 import string
-import pytest
-from json import loads
 from collections import Counter
+from json import loads
+
 import dateutil.parser
+import pytest
 
 from src.utils import LANGUAGE_MAP
-from src.models import TASK_TYPES
 from tests.Setup import Setup
 from tests.utils import QUESTION_MAP, get_dict_combs
 
