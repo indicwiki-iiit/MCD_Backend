@@ -18,22 +18,7 @@ class TestTaskReport(Setup):
             self.generate_user(fake_user, user_type='problem_setter')
             task = self.generate_task(fake_task)
             self.tasks.append(task)
-            print(self.auth_token)
         self.tasks.sort(key=lambda x: dateutil.parser.isoparse(x['date_added']))
-
-    # def test__task_tags(self):
-    #     tags, langs = set(), set()
-    #     for task in self.tasks:
-    #         tags.update(task['tags'])
-    #         langs.update(task['languages'])
-    #
-    #     response = self.app.get(f'/task/tags/')
-    #     status, data = response.status_code, loads(response.data)['response']
-    #     assert status == 200
-    #     assert sorted(tags) == sorted(data['tags'])
-    #     assert sorted(langs) == sorted(data['langs'])
-
-    # @pytest.mark.xfail(reason='Something buggy is happening with date sorting')
 
     @pytest.mark.parametrize('user_type', ['admin', 'problem_setter'])
     def test__get_creator_task(self, user_type):
