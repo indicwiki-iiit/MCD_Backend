@@ -74,6 +74,12 @@ def get_creator_tasks():
     # Getting those tasks
     res = db.mongo_db.task.find(filter_by_user, {'details': 0, 'question_list': 0})
 
-    tasks = [Task(**x).to_json() for x in res]
+    tasks = []
+    for t in res:
+        task = Task(**t).to_json()
+        task.pop('details')
+        task.pop('question_list')
+        tasks.append(task)
+
     print(tasks, user_id)
     return json_response({"status": "success", "response": tasks})

@@ -1,7 +1,8 @@
 import json
+from collections import defaultdict
+
 from bson import ObjectId, json_util
 from flask import Blueprint, request
-from collections import defaultdict
 
 import src.database as db
 from src.utils import json_response, get_questions_with_responses_from_task_query, question_counts, \
@@ -283,7 +284,7 @@ def request_questions(task_id):
         {"$set": {"question_list.$[ques].session_id": new_session_id,
                   "question_list.$[ques].assigned": user_id}
          },
-        upsert=False, array_filters=[{"ques.id": {"$in": questions_ids}}]
+        array_filters=[{"ques.id": {"$in": questions_ids}}]
     )
 
     if updated_data.matched_count <= 0:  # If no document was found by the query
