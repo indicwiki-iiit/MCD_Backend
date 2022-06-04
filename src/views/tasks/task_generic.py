@@ -1,5 +1,4 @@
 import os
-import json
 from datetime import datetime
 
 from flask import Blueprint, request
@@ -100,12 +99,12 @@ def create_generic_task():
     # reading the uploaded files
     uploaded_file = request.files.get('file', None)
     if uploaded_file is not None and uploaded_file.filename != '':
-        if Config.DB_DEPLOYMENT == 'production':
+        if Config.DB_DEPLOYMENT_ENV == 'production':
             target_dir = os.path.join(
-                '/', 'tmp', 'uploaded_docs', "%s-%s" % (creator_details["_id"], datetime.utcnow()))
+                './', 'resources', "%s-%s" % (creator_details["_id"], datetime.utcnow()))
         else:
             target_dir = os.path.join(
-                './', 'uploaded_docs', "%s-%s" % (creator_details["_id"], datetime.utcnow()))
+                './', 'resources', "%s-%s" % (creator_details["_id"], datetime.utcnow()))
         db.logger.info("storing the question file to directory : %s" % target_dir)
         os.makedirs(target_dir, exist_ok=True)
         destination_path = os.path.join(target_dir, uploaded_file.filename)
@@ -152,7 +151,7 @@ def create_generic_task():
             'error': 'mininum number of question per session is greater than total number of questions.'},
             status=400)
 
-    date_created = datetime.utcnow()    
+    date_created = datetime.utcnow()
     task_details.update({'date_added': date_created,
                          'date_modified': date_created,
                          'languages': languages,

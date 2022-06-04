@@ -11,7 +11,7 @@ LOG_LEVELS = {
 
 
 class MyLogger():
-    def __init__(self, name, log_file_path, use_stdout=False, overwrite=True, log_level=LOG_LEVELS['info']):
+    def __init__(self, name, log_file_path, use_stdout=False, overwrite=True, log_level='info'):
         self.name = name
         self.log_file_path = log_file_path
         self.stdout = use_stdout

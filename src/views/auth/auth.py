@@ -1,6 +1,6 @@
-import json
 import uuid
 from datetime import datetime
+
 from flask import Blueprint, request
 
 import src.database as db

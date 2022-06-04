@@ -1,5 +1,5 @@
 import src.database as db
-from flask import Blueprint
+from flask import Blueprint, request
 from src.utils import json_response
 
 connection_apis = Blueprint('connection_apis', __name__)

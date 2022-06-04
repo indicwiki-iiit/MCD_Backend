@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mcd
+    restart: unless-stopped
+    ports:
+      - ${FLASK_HOST_PORT}:5000
+    environment:
+      FLASK_ENV: ${FLASK_ENV}
+      FLASK_DEBUG: ${FLASK_DEBUG}
+      MONGODB_USER: ${MONGODB_USER}
+      MONGODB_PASSWORD: ${MONGODB_PASSWORD}
+      MONGODB_PORT: ${MONGODB_PORT}
+      MONGODB_DB_NAME: ${MONGODB_DB_NAME}
+      DB_DEPLOYMENT_ENV: ${DB_DEPLOYMENT_ENV}
+      FLASK_CONFIG_DEFAULT: ${FLASK_CONFIG_DEFAULT}
+    volumes:
+      - .:/mcd
+    depends_on:
+      - db
+
+  db:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGODB_DB_NAME}
+    volumes:
+      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
