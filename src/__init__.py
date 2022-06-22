@@ -13,13 +13,15 @@ def create_app():
     app = Flask(__name__)
     CORS(app, resources={r"/*": {"origins": "*"}})
     app.config['CORS_HEADERS'] = 'Content-Type'
+    master_blueprint = Blueprint('master_blueprint', __name__, url_prefix='/api')
 
-    app.register_blueprint(connection_apis)
-    app.register_blueprint(auth_apis)
-    app.register_blueprint(task_apis)
-    app.register_blueprint(question_apis)
-    app.register_blueprint(response_apis)
-    app.register_blueprint(user_apis)
-    app.register_blueprint(leaderboard_api)
-
+    master_blueprint.register_blueprint(connection_apis)
+    master_blueprint.register_blueprint(auth_apis)
+    master_blueprint.register_blueprint(task_apis)
+    master_blueprint.register_blueprint(question_apis)
+    master_blueprint.register_blueprint(response_apis)
+    master_blueprint.register_blueprint(user_apis)
+    master_blueprint.register_blueprint(leaderboard_api)
+    app.register_blueprint(master_blueprint)
+    print(app.url_map)
     return app
