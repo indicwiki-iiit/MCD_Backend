@@ -9,7 +9,7 @@ from src.models import QUESTION_DISP_NAME, User, USER_CRITICAL_FIELDS
 from src.utils import json_response, get_time_delta_str, get_proper_date_str, remove_extra_keys, \
     remove_extra_spaces_in_dictionary
 
-user_apis = Blueprint('user_api', __name__, url_prefix='/user')
+user_apis = Blueprint('user_api', __name__, url_prefix='/user/')
 
 
 def get_user_annotations_details(user_id):
