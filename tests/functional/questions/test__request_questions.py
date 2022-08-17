@@ -20,7 +20,7 @@ class TestRequestQuestions(Setup):
         self.chosen_qn = random.choice(self.task['question_list'])
         self.session_length = random.randint(1, len(self.task['question_list']))
         self.endpoint = {
-            'path': f"/task/{task_id}/request_questions/?auth_token={self.auth_token}&session_length={self.session_length}",
+            'path': f"/api/task/{task_id}/request_questions/?auth_token={self.auth_token}&session_length={self.session_length}",
             'content_type': 'application/json',
         }
 

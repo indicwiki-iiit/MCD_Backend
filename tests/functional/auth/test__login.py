@@ -13,10 +13,10 @@ class TestLoginUser:
     def setUp(self, init_db, fake_user):
         self.app = create_app().test_client()
         self.user = fake_user()
-        response = self.app.post('/user/', data=dumps(self.user), content_type='application/json')
+        response = self.app.post('/api/user/', data=dumps(self.user), content_type='application/json')
         self.data = loads(response.data)['response']
         self.endpoint = {
-            'path': '/user/login/',
+            'path': '/api/user/login/',
             'content_type': 'application/json'
         }
 

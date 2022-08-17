@@ -19,7 +19,7 @@ class TestTask(Setup):
         self.task = self.generate_task(fake_task)
 
         self.endpoint = {
-            'path': f"/task/{self.task['id']}/?auth_token={self.auth_token}"
+            'path': f"/api/task/{self.task['id']}/?auth_token={self.auth_token}"
         }
 
     def modify_task(self, task_type):

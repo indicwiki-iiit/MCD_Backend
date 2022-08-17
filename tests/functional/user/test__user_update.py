@@ -17,7 +17,7 @@ class TestTaskUpdate(Setup):
         self.set_app()
         self.generate_user(fake_user, user_type='any')
         self.endpoint = {
-            'path': f"/user/{self.user['id']}/?auth_token={self.auth_token}",
+            'path': f"/api/user/{self.user['id']}/?auth_token={self.auth_token}",
             'content_type': 'application/json'
         }
 

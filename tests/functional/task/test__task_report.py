@@ -26,7 +26,7 @@ class TestTaskReport(Setup):
         user_id = ObjectId(self.user['id'])
         db.mongo_db.user.update_one({'_id': user_id}, {'$set': {'user_type': user_type}})
 
-        response = self.app.get(f"/task/creator/?auth_token={self.auth_token}")
+        response = self.app.get(f"/api/task/creator/?auth_token={self.auth_token}")
         status, data = response.status_code, loads(response.data)['response']
         data.sort(key=lambda x: dateutil.parser.isoparse(x['date_added']))
 

@@ -22,7 +22,7 @@ class TestResponse(Setup):
         task_id = self.task['id']
         self.chosen_qn = random.choice(self.task['question_list'])
         self.endpoint = {
-            'path': f"/task/{task_id}/annotation/{self.chosen_qn['id']}/?auth_token={self.auth_token}",
+            'path': f"/api/task/{task_id}/annotation/{self.chosen_qn['id']}/?auth_token={self.auth_token}",
             'content_type': 'application/json',
         }
 

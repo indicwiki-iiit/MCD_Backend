@@ -33,7 +33,7 @@ class TestTask(Setup):
             tags.update(task['tags'])
             langs.update(task['languages'])
 
-        response = self.app.get(f'/task/tags/')
+        response = self.app.get(f'/api/task/tags/')
         status, data = response.status_code, loads(response.data)['response']
         assert status == 200
         assert sorted(tags) == sorted(data['tags'])
@@ -42,7 +42,7 @@ class TestTask(Setup):
     # @pytest.mark.xfail(reason='Something buggy is happening with date sorting')
     @pytest.mark.parametrize('filters', get_dict_combs(filters))
     def test__get_all_task(self, filters):
-        endpoint = "/task/?"
+        endpoint = "/api/task/?"
         sort = filters.get('sort', 'alphabetical').strip().lower()
         search = filters.get('search', None)
         endpoint += f"sort={sort}&"

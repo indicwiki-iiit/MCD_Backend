@@ -21,7 +21,7 @@ class TestTaskCreationGeneric(Setup):
         self.task = fake_task()
         self.task['access_type'] = 'global-view'
         self.endpoint = {
-            'path': f'/task/genric/?auth_token={self.auth_token}',
+            'path': f'/api/task/genric/?auth_token={self.auth_token}',
             'content_type': 'multipart/form-data'
         }
 

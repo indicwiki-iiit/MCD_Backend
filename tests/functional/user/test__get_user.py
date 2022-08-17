@@ -19,7 +19,7 @@ class TestUser(Setup):
 
     def test__get_all_users(self):
 
-        response = self.app.get(f"/user/")
+        response = self.app.get(f"/api/user/")
         status, data = response.status_code, loads(response.data)['response']
         data.sort(key=lambda x: x['email'])
 

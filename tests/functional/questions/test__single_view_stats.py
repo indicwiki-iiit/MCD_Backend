@@ -40,7 +40,7 @@ class TestSingleViewStats(Setup):
         db.mongo_db.task.update_one({"_id": ObjectId(task_id)},
                                     {'$set': {'question_list': modified_qns}})
         self.endpoint = {
-            'path': f"/task/{task_id}/single_view_stats/",
+            'path': f"/api/task/{task_id}/single_view_stats/",
             'content_type': 'application/json',
         }
 

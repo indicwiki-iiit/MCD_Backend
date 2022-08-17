@@ -19,14 +19,14 @@
 #         self.app = create_app().test_client()
 #         self.user = fake_user()
 #         self.user['user_type'] = 'admin'
-#         response = self.app.post('/user/', data=dumps(self.user), content_type='application/json')
+#         response = self.app.post('/api/user/', data=dumps(self.user), content_type='application/json')
 #         self.user_id = loads(response.data)['response']['id']
 #         body = {'email': self.user['email']}
-#         response = self.app.post('/user/login/', data=dumps(body), content_type='application/json')
+#         response = self.app.post('/api/user/login/', data=dumps(body), content_type='application/json')
 #         auth_token = loads(response.data)['auth_token']
 #         self.task = fake_task()
 #         self.endpoint = {
-#             'path': f'/task/?auth_token={auth_token}',
+#             'path': f'/api/task/?auth_token={auth_token}',
 #             'content_type': 'application/json',
 #         }
 #

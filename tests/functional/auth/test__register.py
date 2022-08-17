@@ -15,7 +15,7 @@ class TestRegisterUser:
     def setUp(self, init_db):
         self.app = create_app().test_client()
         self.endpoint = {
-            'path': '/user/',
+            'path': '/api/user/',
             'content_type': 'application/json',
         }
 

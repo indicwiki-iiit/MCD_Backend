@@ -16,7 +16,7 @@ class TestTaskUpdate(Setup):
         self.task = self.generate_task(fake_task)
         task_id = self.task['id']
         self.endpoint = {
-            'path': f"/task/{task_id}/?auth_token={self.auth_token}",
+            'path': f"/api/task/{task_id}/?auth_token={self.auth_token}",
             'content_type': 'application/json',
         }
 
